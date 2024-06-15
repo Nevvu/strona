@@ -106,19 +106,19 @@ nav {
 
 /* main */
 main {
-	display: flex;
-	flex-direction: column;
 	background-color: #fff;
 	height: 200vh;
 	padding: 10px;
-	align-items: flex-start;
+}
+
+.grid-container{
+	display: grid;
+	grid-template-columns: 2fr 8fr;
 }
 
 .filter-section {
 	padding: 10px;
 	border: 2px solid rgb(153, 153, 153);
-	width: 200px;
-	height: 300px;
 	background-color: #fff;
 	border-radius: 0 0 10px 10px;
 	overflow: auto;
@@ -140,8 +140,8 @@ main {
 	padding: 10px 0 0 0;
 }
 .filter-group label {
-	display: block; /* Sprawia, że każdy label zajmuje całą szerokość i zaczyna się w nowej linii */
-	margin-bottom: 5px; /* Opcjonalnie, doda odstęp pomiędzy labelami */
+	display: block; 
+	margin-bottom: 5px; 
 }
 
 .product-section {
@@ -160,28 +160,44 @@ main {
 	padding: 10px;
 	margin-bottom: 10px;
 }
+#add-product-form input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
 
 .products-container {
 	display: flex;
 	flex-wrap: wrap;
 }
 
+
 .product {
-	border: 1px solid #ccc;
-	margin: 10px;
-	padding: 10px;
-	width: calc(33% - 20px);
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
 }
 
+.product img {
+    width: 100px;  /* Szerokość obrazka */
+    height: auto;
+    margin-right: 10px;  /* Odstęp między obrazkiem a tekstem */
+}
+
+
 .contact {
-	position: absolute;
-	bottom: 0;
 	text-align: center;
+	align-items: center;
+	text-transform: uppercase;
 }
 
 .contact h3 {
 	margin: 20px 0 5px;
-	text-transform: uppercase;
 }
 
 footer {

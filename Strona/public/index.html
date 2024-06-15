@@ -26,18 +26,20 @@
         </div>
     </nav>
 
-        <header class="header">
-            <div class="hero-bg"></div>
-            <div class="hero-text">
-                <h1>nazwa<span> firmy</span></h1>
-                <form class="search-form" action="#" method="GET">
-                    <input type="text" name="search" placeholder="Szukaj...">
-                    <button type="submit">🔍</button>
-                </form>
-            </div>
-        </header>
+    <header class="header">
+        <div class="hero-bg"></div>
+        <div class="hero-text">
+            <h1>nazwa<span> firmy</span></h1>
+            <form class="search-form" action="#" method="GET">
+                <input type="text" name="search" placeholder="Szukaj...">
+                <button type="submit">🔍</button>
+            </form>
+        </div>
+    </header>
 
-        <main class="wrapper">
+    <main class="wrapper">
+        <div class="grid-container">
+
             <section class="filter-section">
                 <div class="filter-styles">
                     <h3>Filtry</h3>
@@ -53,32 +55,42 @@
                 </div>
             </section>
             <section class="product-section">
-                <form id="add-product-form">
-                    <input type="text" class="product-name" placeholder="Nazwa produktu" required>
-                    <input type="number" class="product-price" placeholder="Cena produktu" required>
-                    <textarea class="product-description" placeholder="Opis produktu" required></textarea>
+                <!-- <form id="add-product-form">
+                        <input type="text" class="product-name" placeholder="Nazwa produktu" required>
+                        <input type="number" class="product-price" placeholder="Cena produktu" required>
+                        <textarea class="product-description" placeholder="Opis produktu" required></textarea>
+                        <button type="submit">Dodaj produkt</button>
+                    </form> -->
+                <form id="add-product-form" enctype="multipart/form-data">
+                    <input type="text" name="productName" required>
+                    <input type="number" name="productPrice" required>
+                    <textarea name="productDescription" required></textarea>
+                    <input type="file" name="productImage" accept="image/*" required>
                     <button type="submit">Dodaj produkt</button>
                 </form>
+
+
                 <div class="products-container">
                     <!-- Tutaj będą dodawane produkty -->
                 </div>
             </section>
+        </div>
+        <section class="contact">
+            <h2 class="contact-section">kontakt</h2>
+            <p><i class="fa-solid fa-phone"></i>+48 123 456 789</p>
+            <p><i class="fa-solid fa-envelope"></i>+48 123 456 789</p>
 
-            <section class="contact">
-                <h2 class="contact-section">kontakt</h2>
-                <p><i class="fa-solid fa-phone"></i>+48 123 456 789</p>
-                <p><i class="fa-solid fa-envelope"></i>+48 123 456 789</p>
+            <h3>Adres</h3>
+            <p>ul. Witosa 1</p>
+            <p>00-000 Bielystok</p>
+        </section>
 
-                <h3>Adres</h3>
-                <p>ul. Witosa 1</p>
-                <p>00-000 Bielystok</p>
-            </section>
-        </main>
+    </main>
 
-        <footer>
-            <p>&copy; 2024 NAZWA FIRMY</p>
-        </footer>
-        <script src="./js/script.js"></script>
+    <footer>
+        <p>&copy; 2024 NAZWA FIRMY</p>
+    </footer>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
