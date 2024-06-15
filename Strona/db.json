@@ -1,0 +1,28 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "name": "Laptop ASUS",
+      "price": 3500,
+      "description": "Wysokiej klasy laptop do gier"
+    },
+    {
+      "id": "2",
+      "name": "Smartfon Apple iPhone",
+      "price": 4100,
+      "description": "Nowoczesny smartfon z innowacyjnym systemem"
+    },
+    {
+      "id": "5697",
+      "name": "124",
+      "price": "214",
+      "description": "safd"
+    },
+    {
+      "id": "8048",
+      "name": "123",
+      "price": "124",
+      "description": "124"
+    }
+  ]
+}

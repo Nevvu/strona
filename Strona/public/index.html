@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-KOM</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://kit.fontawesome.com/afa8040683.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="wrapper">
+            <!-- wstawic ikonke burgera -->
+            <button class="burger-icon"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="nav-items">
+                <a href="#">strona główna</a>
+                <a href="#">produkty</a>
+                <a href="#">kontakt</a>
+            </div>
+        </div>
+    </nav>
+
+        <header class="header">
+            <div class="hero-bg"></div>
+            <div class="hero-text">
+                <h1>nazwa<span> firmy</span></h1>
+                <form class="search-form" action="#" method="GET">
+                    <input type="text" name="search" placeholder="Szukaj...">
+                    <button type="submit">🔍</button>
+                </form>
+            </div>
+        </header>
+
+        <main class="wrapper">
+            <section class="filter-section">
+                <div class="filter-styles">
+                    <h3>Filtry</h3>
+                    <button onclick="clearFilters()">Wyczyść wszystkie</button>
+                    <div class="filter-group">
+                        <h4>Producent</h4>
+                        <label><input type="checkbox" name="brand" value="ASUS"> ASUS </label>
+                        <label><input type="checkbox" name="brand" value="Acer"> Acer </label>
+                        <label><input type="checkbox" name="brand" value="HP"> HP </label>
+                        <label><input type="checkbox" name="brand" value="Lenovo"> Lenovo </label>
+                        <label><input type="checkbox" name="brand" value="Toshiba"> Toshiba </label>
+                    </div>
+                </div>
+            </section>
+            <section class="product-section">
+                <form id="add-product-form">
+                    <input type="text" class="product-name" placeholder="Nazwa produktu" required>
+                    <input type="number" class="product-price" placeholder="Cena produktu" required>
+                    <textarea class="product-description" placeholder="Opis produktu" required></textarea>
+                    <button type="submit">Dodaj produkt</button>
+                </form>
+                <div class="products-container">
+                    <!-- Tutaj będą dodawane produkty -->
+                </div>
+            </section>
+
+            <section class="contact">
+                <h2 class="contact-section">kontakt</h2>
+                <p><i class="fa-solid fa-phone"></i>+48 123 456 789</p>
+                <p><i class="fa-solid fa-envelope"></i>+48 123 456 789</p>
+
+                <h3>Adres</h3>
+                <p>ul. Witosa 1</p>
+                <p>00-000 Bielystok</p>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 NAZWA FIRMY</p>
+        </footer>
+        <script src="./js/script.js"></script>
+</body>
+
+</html>
