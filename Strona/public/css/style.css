@@ -314,6 +314,16 @@ main {
     background-color: blue;
 
 }
+.original-price {
+    text-decoration: line-through;
+    color: red;
+}
+
+.discounted-price {
+    font-weight: bold;
+    color: green;
+}
+
 
 .contact {
     bottom: 0;

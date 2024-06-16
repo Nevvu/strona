@@ -34,11 +34,18 @@ function fetchProducts() {
 
             filteredProducts.forEach(product => {
                 const name = product.name || 'Nieznany produkt';
-                const price = product.price || 0;
+                const price = parseFloat(product.price) || 0;
+                const discount = parseFloat(product.discount) || 0;
+                const saleEndTime = product.saleEndTime ? new Date(product.saleEndTime) : null;
+                let discountedPrice = price;
+
+                if (saleEndTime && saleEndTime > new Date() && discount > 0) {
+                    discountedPrice = (price - (price * discount / 100)).toFixed(2);
+                }
+
                 const description = product.description || 'Brak opisu';
                 const imageUrl = product.imageUrl || 'placeholder.png';
                 const brand = product.brand || 'Nieznana marka';
-                const saleEndTime = product.saleEndTime ? new Date(product.saleEndTime) : null;
 
                 const productDiv = document.createElement('div');
                 productDiv.className = 'product';
@@ -47,9 +54,9 @@ function fetchProducts() {
                         <img src="${imageUrl}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
                     </div>
                     <h3>${name}</h3>
-                    <p>Cena: ${price} zł</p>
+                    <p>Cena: ${discount > 0 && saleEndTime && saleEndTime > new Date() ? `<span class="original-price">${price.toFixed(2)} zł</span> <span class="discounted-price">${discountedPrice} zł</span>` : `${price.toFixed(2)} zł`}</p>
                     <p>${description}</p>
-                    ${saleEndTime ? `<p>Promocja kończy się za: <span class="countdown" data-end-time="${saleEndTime}"></span></p>` : ''}
+                    ${saleEndTime ? `<p>Promocja kończy się za: <span class="countdown" data-end-time="${saleEndTime}" data-original-price="${price.toFixed(2)}"></span></p>` : ''}
                     <div class="button-container">
                         <button class="edit-product" data-id="${product.id}">Edytuj</button>
                         <button class="delete-product" data-id="${product.id}">Usuń</button>
@@ -98,6 +105,7 @@ function editProduct(productId) {
             const form = document.getElementById('edit-product-form');
             form.querySelector('input[name="productId"]').value = product.id;
             form.querySelector('input[name="saleDuration"]').value = product.saleDuration || '';
+            form.querySelector('input[name="productDiscount"]').value = product.discount || '';
         });
 }
 
@@ -112,9 +120,11 @@ function bindFormSubmit() {
             name: formData.get('productName'),
             price: parseFloat(formData.get('productPrice')),
             description: formData.get('productDescription'),
-            imageUrl: formData.get('productImage') ? URL.createObjectURL(formData.get('productImage')) : 'placeholder.png'
+            imageUrl: formData.get('productImage') ? URL.createObjectURL(formData.get('productImage')) : 'placeholder.png',
+            discount: parseFloat(formData.get('productDiscount')) || 0,
+            saleDuration: parseInt(formData.get('saleDuration'), 10) || 0
         };
-        
+
         fetch('http://localhost:3000/products', {
             method: 'POST',
             headers: {
@@ -137,6 +147,7 @@ function bindFormSubmit() {
         const formData = new FormData(editForm);
         const productId = formData.get('productId');
         const saleDuration = parseInt(formData.get('saleDuration'), 10);
+        const discount = parseFloat(formData.get('productDiscount')) || 0;
 
         if (saleDuration < 0) {
             alert('Czas trwania promocji nie może być ujemny.');
@@ -144,12 +155,13 @@ function bindFormSubmit() {
         }
 
         const now = new Date();
-        const saleEndTime = new Date(now.getTime() + saleDuration * 60000); 
+        const saleEndTime = new Date(now.getTime() + saleDuration * 60000);
 
         fetch(`http://localhost:3000/products/${productId}`)
             .then(response => response.json())
             .then(product => {
                 product.saleEndTime = saleEndTime;
+                product.discount = discount;
 
                 fetch(`http://localhost:3000/products/${product.id}`, {
                     method: 'PUT',
@@ -205,6 +217,7 @@ function updateCountdowns() {
 
     countdownElements.forEach(element => {
         const endTime = new Date(element.dataset.endTime);
+        const originalPrice = element.dataset.originalPrice;
         const interval = setInterval(() => {
             const now = new Date();
             const timeRemaining = endTime - now;
@@ -212,6 +225,17 @@ function updateCountdowns() {
             if (timeRemaining <= 0) {
                 clearInterval(interval);
                 element.textContent = 'Promocja zakończona';
+                const productElement = element.closest('.product');
+                const priceElement = productElement.querySelector('.discounted-price');
+                if (priceElement) {
+                    priceElement.textContent = `${originalPrice} zł`;
+                    priceElement.classList.remove('discounted-price');
+                    const originalPriceElement = productElement.querySelector('.original-price');
+                    if (originalPriceElement) {
+                        originalPriceElement.remove();
+                    }
+                }
+                element.closest('.countdown-container').remove();
             } else {
                 const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
                 const minutes = Math.floor((timeRemaining / (1000 * 60)) % 60);

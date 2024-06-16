@@ -21,7 +21,7 @@ function fetchPromotionalProducts() {
 
             const promotionalProducts = products.filter(product => {
                 const saleEndTime = new Date(product.saleEndTime);
-                return product.saleEndTime && saleEndTime > new Date();
+                return product.saleEndTime && saleEndTime > new Date() && product.discount > 0;
             });
 
             if (promotionalProducts.length === 0) {
@@ -32,10 +32,12 @@ function fetchPromotionalProducts() {
             } else {
                 promotionalProducts.forEach(product => {
                     const name = product.name || 'Nieznany produkt';
-                    const price = product.price || 0;
+                    const price = parseFloat(product.price) || 0;
+                    const discount = parseFloat(product.discount) || 0;
+                    const saleEndTime = new Date(product.saleEndTime);
+                    const discountedPrice = (price - (price * discount / 100)).toFixed(2);
                     const description = product.description || 'Brak opisu';
                     const imageUrl = product.imageUrl || 'placeholder.png';
-                    const saleEndTime = new Date(product.saleEndTime);
 
                     const productDiv = document.createElement('div');
                     productDiv.className = 'product';
@@ -44,7 +46,7 @@ function fetchPromotionalProducts() {
                             <img src="${imageUrl}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
                         </div>
                         <h3>${name}</h3>
-                        <p>Cena: ${price} zł</p>
+                        <p>Cena: <span class="original-price">${price.toFixed(2)} zł</span> <span class="discounted-price">${discountedPrice} zł</span></p>
                         <p>${description}</p>
                         <p>Promocja kończy się za: <span class="countdown" data-end-time="${saleEndTime}"></span></p>
                         <div class="button-container">
@@ -133,7 +135,6 @@ function deleteProduct(productId) {
         }
     });
 }
-
 
 function toggleMenu() {
     const navItems = document.querySelector('.nav-items');
