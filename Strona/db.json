@@ -4,37 +4,29 @@
       "id": "1",
       "name": "Laptop ASUS",
       "price": 3500,
-      "description": "Wysokiej klasy laptop do gier"
+      "description": "Wysokiej klasy laptop do gier",
+      "imageUrl": "./img/laptop-small.jpg"
     },
     {
       "id": "2",
       "name": "Smartfon Apple iPhone",
       "price": 4100,
-      "description": "Nowoczesny smartfon z innowacyjnym systemem"
+      "description": "Nowoczesny smartfon z innowacyjnym systemem",
+      "imageUrl": "./img/laptop-small.jpg"
     },
     {
-      "id": "5697",
-      "name": "124",
-      "price": "214",
-      "description": "safd"
+      "id": "e501",
+      "name": "dd",
+      "price": 11,
+      "description": "112",
+      "imageUrl": "blob:http://127.0.0.1:5500/2fe9d089-30e7-408b-aee7-0d7e89aebc7c"
     },
     {
-      "id": "8048",
-      "name": "123",
-      "price": "124",
-      "description": "124"
-    },
-    {
-      "id": "89f2",
-      "name": "fsa",
-      "price": "12",
-      "description": "safg"
-    },
-    {
-      "id": "e8c6",
-      "name": "safas",
-      "price": "214",
-      "description": "fsa"
+      "id": "bebb",
+      "name": "ggg",
+      "price": 222,
+      "description": "sfsd",
+      "imageUrl": "blob:http://127.0.0.1:5500/68df4f62-406c-4e4a-9aef-5f7d09b10ef4"
     }
   ]
 }
