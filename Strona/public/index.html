@@ -15,8 +15,7 @@
 <body>
     <nav>
         <div class="wrapper">
-            <!-- wstawic ikonke burgera -->
-            <button class="burger-icon"><i class="fa-solid fa-bars"></i></button>
+            <button class="burger-icon" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
 
             <div class="nav-items">
                 <a href="#">strona główna</a>
@@ -30,63 +29,62 @@
         <div class="hero-bg"></div>
         <div class="hero-text">
             <h1>nazwa<span> firmy</span></h1>
-            <form class="search-form" action="#" method="GET">
-                <input type="text" name="search" placeholder="Szukaj...">
-                <button type="submit">🔍</button>
-            </form>
         </div>
     </header>
-
-    <main class="wrapper">
-        <div class="grid-container">
-
-            <section class="filter-section">
-                <div class="filter-styles">
+    <main>
+        <div class="wrapper">
+            <button class="filter-toggle" onclick="toggleFilters()">Filtry</button>
+            <div class="grid-container">
+                <section class="filter-section">
                     <h3>Filtry</h3>
                     <button onclick="clearFilters()">Wyczyść wszystkie</button>
                     <div class="filter-group">
                         <h4>Producent</h4>
                         <label><input type="checkbox" name="brand" value="ASUS"> ASUS </label>
+                        <label><input type="checkbox" name="brand" value="Apple"> Apple </label>
                         <label><input type="checkbox" name="brand" value="Acer"> Acer </label>
                         <label><input type="checkbox" name="brand" value="HP"> HP </label>
                         <label><input type="checkbox" name="brand" value="Lenovo"> Lenovo </label>
                         <label><input type="checkbox" name="brand" value="Toshiba"> Toshiba </label>
                     </div>
-                </div>
-            </section>
-            <section class="product-section">
-                <!-- <form id="add-product-form">
-                        <input type="text" class="product-name" placeholder="Nazwa produktu" required>
-                        <input type="number" class="product-price" placeholder="Cena produktu" required>
-                        <textarea class="product-description" placeholder="Opis produktu" required></textarea>
+        
+                    <form id="add-product-form" enctype="multipart/form-data">
+                        <h3>Dodawanie produktów</h3>
+                        <select name="productBrand" required>
+                            <option value="" disabled selected>Wybierz producenta</option>
+                            <option value="ASUS">ASUS</option>
+                            <option value="Apple">Apple</option>
+                            <option value="Acer">Acer</option>
+                            <option value="HP">HP</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="Toshiba">Toshiba</option>
+                        </select>
+                        <input type="text" name="productName" placeholder="Nazwa produktu" required>
+                        <input type="number" name="productPrice" placeholder="Cena produktu" required>
+                        <textarea name="productDescription" placeholder="Opis produktu" required></textarea>
+                        <input type="file" name="productImage" accept="image/*" required>
                         <button type="submit">Dodaj produkt</button>
-                    </form> -->
-                <form id="add-product-form" enctype="multipart/form-data">
-                    <input type="text" name="productName" required>
-                    <input type="number" name="productPrice" required>
-                    <textarea name="productDescription" required></textarea>
-                    <input type="file" name="productImage" accept="image/*" required>
-                    <button type="submit">Dodaj produkt</button>
-                </form>
+                    </form>
+                </section>
+                
+                <section class="product-section">
+                    <div class="products-container">
+                        <!-- Produkty będą dodawane tutaj -->
+                    </div>
+                </section>
+            </div>
 
-
-                <div class="products-container">
-                    <!-- Tutaj będą dodawane produkty -->
-                </div>
-            </section>
         </div>
         <section class="contact">
             <h2 class="contact-section">kontakt</h2>
             <p><i class="fa-solid fa-phone"></i>+48 123 456 789</p>
-            <p><i class="fa-solid fa-envelope"></i>+48 123 456 789</p>
-
+            <p><i class="fa-solid fa-envelope"></i>nazwa_firmy@mail.mail</p>
+            
             <h3>Adres</h3>
             <p>ul. Witosa 1</p>
             <p>00-000 Bielystok</p>
         </section>
-
     </main>
-
     <footer>
         <p>&copy; 2024 NAZWA FIRMY</p>
     </footer>

@@ -1,40 +1,36 @@
 {
   "products": [
     {
-      "id": "1",
-      "name": "Laptop ASUS",
-      "price": 3500,
-      "description": "Wysokiej klasy laptop do gier"
-    },
-    {
       "id": "2",
-      "name": "Smartfon Apple iPhone",
+      "name": "Smartfon iPhone 12",
       "price": 4100,
-      "description": "Nowoczesny smartfon z innowacyjnym systemem"
+      "description": "Nowoczesny smartfon z innowacyjnym systemem",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Apple"
     },
     {
-      "id": "5697",
-      "name": "124",
-      "price": "214",
-      "description": "safd"
+      "id": "3",
+      "name": "Laptop Predator",
+      "price": 3000,
+      "description": "Potężny laptop do gier",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Acer"
     },
     {
-      "id": "8048",
-      "name": "123",
-      "price": "124",
-      "description": "124"
+      "id": "4",
+      "name": "Laptop Pavilion",
+      "price": 2800,
+      "description": "Laptop do codziennego użytku",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "HP"
     },
     {
-      "id": "89f2",
-      "name": "fsa",
-      "price": "12",
-      "description": "safg"
-    },
-    {
-      "id": "e8c6",
-      "name": "safas",
-      "price": "214",
-      "description": "fsa"
+      "id": "471a",
+      "brand": "ASUS",
+      "name": "Laptopt ASUS",
+      "price": 3400,
+      "description": "Laptop gamingowy",
+      "imageUrl": "./img/laptop-small.jpg"
     }
   ]
 }

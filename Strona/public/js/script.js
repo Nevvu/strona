@@ -1,177 +1,130 @@
 document.addEventListener('DOMContentLoaded', function () {
-	// Selectors
-	const burgerIcon = document.querySelector('.burger-icon');
-	const navItems = document.querySelector('.nav-items');
+    const burgerIcon = document.querySelector('.burger-icon');
+    const navItems = document.querySelector('.nav-items');
 
-	// Toggle navigation items
-	burgerIcon.addEventListener('click', function () {
-		navItems.classList.toggle('show');
-	});
+    burgerIcon.addEventListener('click', function () {
+        navItems.classList.toggle('show');
+    });
 
-	// Fetch products and bind form submission
-	fetchProducts();
-	bindFormSubmit();
+    fetchProducts();
+    bindFormSubmit();
+    bindFilterEvents();
+    handleResize(); // Wywołanie funkcji handleResize podczas ładowania strony
 });
 
 function clearFilters() {
-	document
-		.querySelectorAll('.filter-section input[type="checkbox"]')
-		.forEach((cb) => (cb.checked = false));
-}
-
-function bindFormSubmit() {
-	const form = document.getElementById('add-product-form');
-	form.addEventListener('submit', function (event) {
-		event.preventDefault();
-
-		const productName = document.querySelector('.product-name').value;
-		const productPrice = document.querySelector('.product-price').value;
-		const productDescription = document.querySelector(
-			'.product-description'
-		).value;
-
-		const productElement = document.createElement('div');
-		productElement.className = 'product';
-		productElement.innerHTML = `
-            <h3>${productName}</h3>
-            <p>Cena: ${productPrice} zł</p>
-            <p>${productDescription}</p>
-        `;
-
-		document.querySelector('.products-container').appendChild(productElement);
-
-		fetch('http://localhost:3000/products', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name: productName,
-				price: productPrice,
-				description: productDescription,
-			}),
-		}).then(() => {
-			fetchProducts(); // Reload products after adding
-		});
-
-		// Clear form fields
-		form.reset();
-	});
+    document.querySelectorAll('.filter-section input[type="checkbox"]').forEach((cb) => (cb.checked = false));
+    fetchProducts();
 }
 
 function fetchProducts() {
-	const productsContainer = document.querySelector('.products-container');
+    const productsContainer = document.querySelector('.products-container');
+    const selectedBrands = Array.from(document.querySelectorAll('.filter-section input[type="checkbox"]:checked'))
+                                .map(cb => cb.value);
 
-	fetch('http://localhost:3000/products')
-		.then((response) => response.json())
-		.then((products) => {
-			productsContainer.innerHTML = '';
-			products.forEach((product) => {
-				const productDiv = document.createElement('div');
-				productDiv.className = 'product';
-				productDiv.innerHTML = `
-                    <img src="${
-											product.imageUrl || 'placeholder.png'
-										}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
-                    <div>
-                        <h3>${product.name}</h3>
-                        <p>Cena: ${product.price} zł</p>
-                        <p>${product.description}</p>
-                    </div>
+    fetch('http://localhost:3000/products')
+        .then(response => response.json())
+        .then(products => {
+            productsContainer.innerHTML = '';
+
+            // Filtrowanie produktów na podstawie wybranych producentów
+            const filteredProducts = products.filter(product => {
+                if (selectedBrands.length === 0) return true;
+                return selectedBrands.includes(product.brand); 
+            });
+
+            filteredProducts.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.className = 'product';
+                productDiv.innerHTML = `
+                    <img src="${product.imageUrl || 'placeholder.png'}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
+                    <h3>${product.name}</h3>
+                    <p>Cena: ${product.price} zł</p>
+                    <p>${product.description}</p>
+                    <button class="delete-product" data-id="${product.id}">Usuń</button>
                 `;
-				productsContainer.appendChild(productDiv);
-			});
-		});
+                productsContainer.appendChild(productDiv);
+            });
+
+            // Dodaj event listener dla przycisków usuwania
+            document.querySelectorAll('.delete-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    deleteProduct(productId);
+                });
+            });
+        });
+}
+
+function deleteProduct(productId) {
+    fetch(`http://localhost:3000/products/${productId}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => {
+        if(response.ok) {
+            fetchProducts();
+        } else {
+            alert('Nie udało się usunąć produktu.');
+        }
+    });
 }
 
 function bindFormSubmit() {
-	const form = document.getElementById('add-product-form');
-	form.addEventListener('submit', function (event) {
-		event.preventDefault();
+    const form = document.getElementById('add-product-form');
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        
+        const formData = new FormData(form);
+        const productData = {
+            brand: formData.get('productBrand'), // Pobranie wartości producenta z listy
+            name: formData.get('productName'),
+            price: parseFloat(formData.get('productPrice')),
+            description: formData.get('productDescription'),
+            imageUrl: formData.get('productImage') ? URL.createObjectURL(formData.get('productImage')) : 'placeholder.png'
+        };
+        
+        fetch('http://localhost:3000/products', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(productData)
+        }).then(response => {
+            if(response.ok) {
+                fetchProducts();
+            }
+        });
 
-		const formData = new FormData(form);
-
-		fetch('http://localhost:3000/products', {
-			method: 'POST',
-			body: formData, // Używamy FormData, które zawiera obrazek i inne dane
-		}).then(() => {
-			fetchProducts(); // Przeładowanie produktów po dodaniu
-		});
-
-		form.reset(); // Czyszczenie pól formularza
-	});
+        form.reset();
+    });
 }
 
-function fetchProducts() {
-	const productsContainer = document.querySelector('.products-container');
-
-	fetch('http://localhost:3000/products')
-		.then((response) => response.json())
-		.then((products) => {
-			productsContainer.innerHTML = '';
-			products.forEach((product) => {
-				const productDiv = document.createElement('div');
-				productDiv.className = 'product';
-				productDiv.innerHTML = `
-                    <img src="${product.imageUrl}" alt="Obrazek produktu">
-                    <div>
-                        <h3>${product.name}</h3>
-                        <p>Cena: ${product.price} zł</p>
-                        <p>${product.description}</p>
-                    </div>
-                `;
-				productsContainer.appendChild(productDiv);
-			});
-		});
+function bindFilterEvents() {
+    document.querySelectorAll('.filter-section input[type="checkbox"]').forEach(checkbox => {
+        checkbox.addEventListener('change', fetchProducts);
+    });
 }
-const express = require('express');
-const multer = require('multer');
-const app = express();
-const PORT = 3000;
 
-// Konfiguracja Multer
-const storage = multer.diskStorage({
-	destination: function (req, file, cb) {
-		cb(null, 'uploads/'); // Upewnij się, że folder 'uploads' istnieje
-	},
-	filename: function (req, file, cb) {
-		cb(
-			null,
-			file.fieldname +
-				'-' +
-				Date.now() +
-				'.' +
-				file.originalname.split('.').pop()
-		);
-	},
-});
+function toggleMenu() {
+    const navItems = document.querySelector('.nav-items');
+    if (navItems.style.display === 'flex') {
+        navItems.style.display = 'none';
+    } else {
+        navItems.style.display = 'flex';
+    }
+}
 
-const upload = multer({ storage: storage });
+function handleResize() {
+    const navItems = document.querySelector('.nav-items');
+    if (window.innerWidth >= 768) {
+        navItems.style.display = 'flex';
+    } else {
+        navItems.style.display = 'none';
+    }
+}
 
-// Obsługa przesyłania plików
-app.post('/upload', upload.single('productImage'), (req, res) => {
-	const file = req.file;
-	if (!file) {
-		return res.status(400).send('No file uploaded.');
-	}
-	res.send({
-		message: 'File uploaded successfully.',
-		fileUrl: `/uploads/${file.filename}`,
-	});
-});
 
-// Uruchomienie serwera
-app.listen(PORT, () => {
-	console.log(`Server running on http://localhost:${PORT}/`);
-});
-document
-	.getElementById('add-product-form')
-	.addEventListener('submit', function (event) {
-		event.preventDefault();
-		const formData = new FormData(this);
-		fetch('http://localhost:3000/upload', {
-			method: 'POST',
-			body: formData,
-		})
-			.then((response) => response.json())
-			.then((data) => console.log(data))
-			.catch((error) => console.error('Error:', error));
-	});
+window.addEventListener('resize', handleResize);
+window.addEventListener('load', handleResize);
