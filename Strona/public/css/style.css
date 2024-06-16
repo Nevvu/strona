@@ -12,7 +12,7 @@ body {
 .wrapper {
     margin: 0 auto;
     width: 100%;
-    max-width: 1400px;
+    max-width: 2100px;
 }
 
 .hero-bg {
@@ -318,6 +318,7 @@ main {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #ccc;
+    max-width: 350px;
 }
 
 .cart-item img {
@@ -437,6 +438,9 @@ footer {
 
     .hero-text p {
         font-size: 20px;
+    }
+    .cart-section {
+        float: right;
     }
 }
 
