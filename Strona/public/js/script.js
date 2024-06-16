@@ -121,10 +121,41 @@ function clearFilters() {
     fetchProducts();
 }
 
+function validateForm() {
+    const form = document.getElementById('add-product-form');
+    const name = form['productName'].value;
+    const price = form['productPrice'].value;
+    const description = form['productDescription'].value;
+
+    // Walidacja nazwy
+    if (!/^[A-Z]/.test(name)) {
+        alert('Nazwa produktu musi zaczynać się od dużej litery.');
+        return false;
+    }
+
+    // Walidacja opisu
+    if (description.length < 15) {
+        alert('Opis produktu musi zawierać co najmniej 15 znaków.');
+        return false;
+    }
+
+    if (!/^[A-Z]/.test(description)) {
+        alert('Opis produktu musi zaczynać się od dużej litery.');
+        return false;
+    }
+
+    return true;
+}
+
+
 function bindFormSubmit() {
     const form = document.getElementById('add-product-form');
     form.addEventListener('submit', function (event) {
         event.preventDefault();
+
+        if (!validateForm()) {
+            return; // Jeśli walidacja nie powiodła się, nie wysyłaj formularza
+        }
         
         const formData = new FormData(form);
         const productData = {

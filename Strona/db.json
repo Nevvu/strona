@@ -31,14 +31,6 @@
       "price": 3400,
       "description": "Laptop gamingowy",
       "imageUrl": "./img/laptop-small.jpg"
-    },
-    {
-      "id": "2b5c",
-      "brand": "ASUS",
-      "name": "Laptopt ASUS",
-      "price": 2400,
-      "description": "Komabjn",
-      "imageUrl": "blob:http://127.0.0.1:5500/99c89aca-6382-4b84-97b2-8d5dc2789c16"
     }
   ]
 }
