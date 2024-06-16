@@ -57,6 +57,10 @@ nav {
     cursor: pointer;
     z-index: 2;
     color: #fff;
+    transition: rotate .3s;
+}
+.burger-icon:hover{
+    rotate: 90deg;
 }
 
 .nav-items {

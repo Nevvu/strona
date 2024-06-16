@@ -1,6 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+    const burgerIcon = document.querySelector('.burger-icon');
+    const navItems = document.querySelector('.nav-items');
+
+    burgerIcon.addEventListener('click', function () {
+        navItems.classList.toggle('show');
+    });
+
     fetchPromotionalProducts();
     setInterval(fetchPromotionalProducts, 60000); 
+    handleResize(); 
 });
 
 function fetchPromotionalProducts() {
@@ -125,3 +133,25 @@ function deleteProduct(productId) {
         }
     });
 }
+
+
+function toggleMenu() {
+    const navItems = document.querySelector('.nav-items');
+    if (navItems.style.display === 'flex') {
+        navItems.style.display = 'none';
+    } else {
+        navItems.style.display = 'flex';
+    }
+}
+
+function handleResize() {
+    const navItems = document.querySelector('.nav-items');
+    if (window.innerWidth >= 768) {
+        navItems.style.display = 'flex';
+    } else {
+        navItems.style.display = 'none';
+    }
+}
+
+window.addEventListener('resize', handleResize);
+window.addEventListener('load', handleResize);
