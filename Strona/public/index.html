@@ -47,6 +47,7 @@
                     <div class="filter-group">
                         <h4>Producent</h4>
                         <label><input type="checkbox" name="brand" value="ASUS"> ASUS </label>
+                        <label><input type="checkbox" name="brand" value="Apple"> Apple </label>
                         <label><input type="checkbox" name="brand" value="Acer"> Acer </label>
                         <label><input type="checkbox" name="brand" value="HP"> HP </label>
                         <label><input type="checkbox" name="brand" value="Lenovo"> Lenovo </label>
@@ -61,14 +62,23 @@
                         <textarea class="product-description" placeholder="Opis produktu" required></textarea>
                         <button type="submit">Dodaj produkt</button>
                     </form> -->
-                <form id="add-product-form" enctype="multipart/form-data">
-                    <input type="text" name="productName" required>
-                    <input type="number" name="productPrice" required>
-                    <textarea name="productDescription" required></textarea>
-                    <input type="file" name="productImage" accept="image/*" required>
-                    <button type="submit">Dodaj produkt</button>
-                </form>
-
+                    <form id="add-product-form" enctype="multipart/form-data">
+                        <select name="productBrand" required>
+                            <option value="" disabled selected>Wybierz producenta</option>
+                            <option value="ASUS">ASUS</option>
+                            <option value="Apple">Apple</option>
+                            <option value="Acer">Acer</option>
+                            <option value="HP">HP</option>
+                            <option value="Lenovo">Lenovo</option>
+                            <option value="Toshiba">Toshiba</option>
+                        </select>
+                        <input type="text" name="productName" placeholder="Nazwa produktu" required>
+                        <input type="number" name="productPrice" placeholder="Cena produktu" required>
+                        <textarea name="productDescription" placeholder="Opis produktu" required></textarea>
+                        <input type="file" name="productImage" accept="image/*" required>
+                        <button type="submit">Dodaj produkt</button>
+                    </form>
+                                   
 
                 <div class="products-container">
                     <!-- Tutaj będą dodawane produkty -->

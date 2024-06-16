@@ -112,16 +112,17 @@ main {
 }
 
 .grid-container{
-	display: grid;
-	grid-template-columns: 2fr 8fr;
+	display: flex;
+    gap: 20px; /* Odstęp między sekcjami */
+    padding: 10px;
 }
 
 .filter-section {
-	padding: 10px;
-	border: 2px solid rgb(153, 153, 153);
-	background-color: #fff;
-	border-radius: 0 0 10px 10px;
-	overflow: auto;
+    flex: 1; /* Używamy flexboxa do rozłożenia przestrzeni */
+    padding: 10px;
+    border: 2px solid rgb(153, 153, 153);
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 .filter-section h3 {
@@ -145,34 +146,61 @@ main {
 }
 
 .product-section {
-	flex-grow: 1;
-	padding: 20px;
-	overflow: auto;
+    flex: 5; /* Więcej miejsca na produkty */
+    display: flex;
+    justify-content: space-between; /* Rozkłada produkty i formularz równomiernie */
+    gap: 20px; /* Odstęp między produktami a formularzem */
+    padding: 10px;
 }
 
 #add-product-form {
-	margin-bottom: 20px;
+    max-width: 300px; /* Maksymalna szerokość formularza */
+	min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #add-product-form input,
-#add-product-form textarea {
-	width: 100%;
-	padding: 10px;
-	margin-bottom: 10px;
-}
-#add-product-form input[type="file"] {
+#add-product-form textarea,
+#add-product-form select {
     width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#add-product-form textarea {
+    height: 150px;
+}
+
+#add-product-form input[type="file"] {
+    border: 1px solid #ccc;
     background: #fff;
 }
 
+#add-product-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#add-product-form button:hover {
+    background-color: #218838;
+}
+
+
 
 .products-container {
+    flex-grow: 1; /* Produkty zajmują resztę miejsca */
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around; /* Rozkłada produkty równomiernie */
+    justify-content: flex-start; /* Produkty po lewej stronie */
     gap: 20px; /* Odstęp między produktami */
     padding: 10px;
 }
@@ -221,6 +249,15 @@ main {
     color: #777;
 }
 
+.delete-product {
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
 
 .contact {
 	text-align: center;

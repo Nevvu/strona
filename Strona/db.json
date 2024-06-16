@@ -2,31 +2,43 @@
   "products": [
     {
       "id": "1",
-      "name": "Laptop ASUS",
+      "name": "Laptop ROG",
       "price": 3500,
       "description": "Wysokiej klasy laptop do gier",
-      "imageUrl": "./img/laptop-small.jpg"
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "ASUS"
     },
     {
       "id": "2",
-      "name": "Smartfon Apple iPhone",
+      "name": "Smartfon iPhone 12",
       "price": 4100,
       "description": "Nowoczesny smartfon z innowacyjnym systemem",
-      "imageUrl": "./img/laptop-small.jpg"
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Apple"
     },
     {
-      "id": "e501",
-      "name": "dd",
-      "price": 11,
-      "description": "112",
-      "imageUrl": "blob:http://127.0.0.1:5500/2fe9d089-30e7-408b-aee7-0d7e89aebc7c"
+      "id": "3",
+      "name": "Laptop Predator",
+      "price": 3000,
+      "description": "Potężny laptop do gier",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Acer"
     },
     {
-      "id": "bebb",
-      "name": "ggg",
-      "price": 222,
-      "description": "sfsd",
-      "imageUrl": "blob:http://127.0.0.1:5500/68df4f62-406c-4e4a-9aef-5f7d09b10ef4"
+      "id": "4",
+      "name": "Laptop Pavilion",
+      "price": 2800,
+      "description": "Laptop do codziennego użytku",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "HP"
+    },
+    {
+      "id": "5",
+      "name": "Laptop ThinkPad",
+      "price": 3200,
+      "description": "Profesjonalny laptop biznesowy",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Lenovo"
     }
   ]
 }
