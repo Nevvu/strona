@@ -125,6 +125,10 @@ function handleResize() {
     }
 }
 
+function toggleFilters() {
+    const filterSection = document.querySelector('.filter-section');
+    filterSection.classList.toggle('active');
+}
 
 window.addEventListener('resize', handleResize);
 window.addEventListener('load', handleResize);
