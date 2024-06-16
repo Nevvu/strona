@@ -1,44 +1,38 @@
 {
   "products": [
     {
-      "id": "2",
-      "name": "Smartfon iPhone 12",
-      "price": 4100,
-      "description": "Nowoczesny smartfon z innowacyjnym systemem",
-      "imageUrl": "./img/laptop-small.jpg",
-      "brand": "Apple"
-    },
-    {
-      "id": "3",
-      "name": "Laptop Predator",
-      "price": 3000,
-      "description": "Potężny laptop do gier",
-      "imageUrl": "./img/laptop-small.jpg",
-      "brand": "Acer"
-    },
-    {
-      "id": "4",
-      "name": "Laptop Pavilion",
-      "price": 2800,
-      "description": "Laptop do codziennego użytku",
-      "imageUrl": "./img/laptop-small.jpg",
-      "brand": "HP"
-    },
-    {
-      "id": "471a",
+      "id": "3e18",
       "brand": "ASUS",
       "name": "Laptopt ASUS",
       "price": 3400,
-      "description": "Laptop gamingowy",
+      "description": "Matatata",
+      "imageUrl": "./img/laptop-small.jpg",
+      "saleEndTime": "2024-06-16T21:31:15.215Z"
+    },
+    {
+      "id": "3e21",
+      "brand": "ASUS",
+      "name": "Laptopt ASUS",
+      "price": 3400,
+      "description": "Matatata",
+      "imageUrl": "./img/laptop-small.jpg",
+      "saleEndTime": "2024-06-16T21:26:55.287Z"
+    },
+    {
+      "id": "3e20",
+      "brand": "ASUS",
+      "name": "Laptopt ASUS",
+      "price": 3400,
+      "description": "Matatata",
       "imageUrl": "./img/laptop-small.jpg"
     },
     {
-      "id": "2b5c",
+      "id": "3e19",
       "brand": "ASUS",
       "name": "Laptopt ASUS",
-      "price": 2400,
-      "description": "Komabjn",
-      "imageUrl": "blob:http://127.0.0.1:5500/99c89aca-6382-4b84-97b2-8d5dc2789c16"
+      "price": 3400,
+      "description": "Matatata",
+      "imageUrl": "./img/laptop-small.jpg"
     }
   ]
 }

@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
     fetchProducts();
     bindFormSubmit();
     bindFilterEvents();
-    handleResize(); // Wywołanie funkcji handleResize podczas ładowania strony
+    handleResize(); 
 });
 
 function clearFilters() {
@@ -27,32 +27,52 @@ function fetchProducts() {
         .then(products => {
             productsContainer.innerHTML = '';
 
-            // Filtrowanie produktów na podstawie wybranych producentów
             const filteredProducts = products.filter(product => {
                 if (selectedBrands.length === 0) return true;
                 return selectedBrands.includes(product.brand); 
             });
 
             filteredProducts.forEach(product => {
+                const name = product.name || 'Nieznany produkt';
+                const price = product.price || 0;
+                const description = product.description || 'Brak opisu';
+                const imageUrl = product.imageUrl || 'placeholder.png';
+                const brand = product.brand || 'Nieznana marka';
+                const saleEndTime = product.saleEndTime ? new Date(product.saleEndTime) : null;
+
                 const productDiv = document.createElement('div');
                 productDiv.className = 'product';
                 productDiv.innerHTML = `
-                    <img src="${product.imageUrl || 'placeholder.png'}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
-                    <h3>${product.name}</h3>
-                    <p>Cena: ${product.price} zł</p>
-                    <p>${product.description}</p>
-                    <button class="delete-product" data-id="${product.id}">Usuń</button>
+                    <div class="product-image-container">
+                        <img src="${imageUrl}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
+                    </div>
+                    <h3>${name}</h3>
+                    <p>Cena: ${price} zł</p>
+                    <p>${description}</p>
+                    ${saleEndTime ? `<p>Promocja kończy się za: <span class="countdown" data-end-time="${saleEndTime}"></span></p>` : ''}
+                    <div class="button-container">
+                        <button class="edit-product" data-id="${product.id}">Edytuj</button>
+                        <button class="delete-product" data-id="${product.id}">Usuń</button>
+                    </div>
                 `;
                 productsContainer.appendChild(productDiv);
             });
 
-            // Dodaj event listener dla przycisków usuwania
+            document.querySelectorAll('.edit-product').forEach(button => {
+                button.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    editProduct(productId);
+                });
+            });
+
             document.querySelectorAll('.delete-product').forEach(button => {
                 button.addEventListener('click', function() {
                     const productId = this.getAttribute('data-id');
                     deleteProduct(productId);
                 });
             });
+
+            updateCountdowns();
         });
 }
 
@@ -71,6 +91,16 @@ function deleteProduct(productId) {
     });
 }
 
+function editProduct(productId) {
+    fetch(`http://localhost:3000/products/${productId}`)
+        .then(response => response.json())
+        .then(product => {
+            const form = document.getElementById('edit-product-form');
+            form.querySelector('input[name="productId"]').value = product.id;
+            form.querySelector('input[name="saleDuration"]').value = product.saleDuration || '';
+        });
+}
+
 function bindFormSubmit() {
     const form = document.getElementById('add-product-form');
     form.addEventListener('submit', function (event) {
@@ -78,7 +108,7 @@ function bindFormSubmit() {
         
         const formData = new FormData(form);
         const productData = {
-            brand: formData.get('productBrand'), // Pobranie wartości producenta z listy
+            brand: formData.get('productBrand'),
             name: formData.get('productName'),
             price: parseFloat(formData.get('productPrice')),
             description: formData.get('productDescription'),
@@ -98,6 +128,43 @@ function bindFormSubmit() {
         });
 
         form.reset();
+    });
+
+    const editForm = document.getElementById('edit-product-form');
+    editForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const formData = new FormData(editForm);
+        const productId = formData.get('productId');
+        const saleDuration = parseInt(formData.get('saleDuration'), 10);
+
+        if (saleDuration < 0) {
+            alert('Czas trwania promocji nie może być ujemny.');
+            return;
+        }
+
+        const now = new Date();
+        const saleEndTime = new Date(now.getTime() + saleDuration * 60000); 
+
+        fetch(`http://localhost:3000/products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                product.saleEndTime = saleEndTime;
+
+                fetch(`http://localhost:3000/products/${product.id}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(product)
+                }).then(response => {
+                    if(response.ok) {
+                        fetchProducts();
+                    }
+                });
+
+                editForm.reset();
+            });
     });
 }
 
@@ -132,3 +199,26 @@ function toggleFilters() {
 
 window.addEventListener('resize', handleResize);
 window.addEventListener('load', handleResize);
+
+function updateCountdowns() {
+    const countdownElements = document.querySelectorAll('.countdown');
+
+    countdownElements.forEach(element => {
+        const endTime = new Date(element.dataset.endTime);
+        const interval = setInterval(() => {
+            const now = new Date();
+            const timeRemaining = endTime - now;
+
+            if (timeRemaining <= 0) {
+                clearInterval(interval);
+                element.textContent = 'Promocja zakończona';
+            } else {
+                const hours = Math.floor((timeRemaining / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((timeRemaining / (1000 * 60)) % 60);
+                const seconds = Math.floor((timeRemaining / 1000) % 60);
+
+                element.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            }
+        }, 1000);
+    });
+}

@@ -19,8 +19,8 @@
 
             <div class="nav-items">
                 <a href="#">strona główna</a>
-                <a href="#">produkty</a>
-                <a href="#">kontakt</a>
+                <a href="promocje.html">promocje</a>
+                <a href="koszyk.html">koszyk</a>
             </div>
         </div>
     </nav>
@@ -65,15 +65,22 @@
                         <input type="file" name="productImage" accept="image/*" required>
                         <button type="submit">Dodaj produkt</button>
                     </form>
+
+                    <form id="edit-product-form" enctype="multipart/form-data">
+                        <h3>Edycja produktu</h3>
+                        <input type="hidden" name="productId">
+                        <input type="number" name="saleDuration" placeholder="Czas trwania promocji (minuty)" min="0">
+                        <button type="submit">Zapisz zmiany</button>
+                    </form>
                 </section>
-                
+
                 <section class="product-section">
                     <div class="products-container">
                         <!-- Produkty będą dodawane tutaj -->
                     </div>
                 </section>
-            </div>
 
+            </div>
         </div>
         <section class="contact">
             <h2 class="contact-section">kontakt</h2>
