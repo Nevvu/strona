@@ -1,36 +1,84 @@
 {
   "products": [
     {
-      "id": "2",
-      "name": "Smartfon iPhone 12",
-      "price": 4100,
-      "description": "Nowoczesny smartfon z innowacyjnym systemem",
+      "id": "5",
+      "name": "Smartfon Samsung Galaxy S21",
+      "price": 3800,
+      "description": "Zaawansowany smartfon z ekranem AMOLED",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Samsung"
+    },
+    {
+      "id": "6",
+      "name": "Smartfon Google Pixel 6",
+      "price": 3500,
+      "description": "Smartfon z czystym Androidem i wyjątkową kamerą",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Google"
+    },
+    {
+      "id": "7",
+      "name": "Laptop Dell XPS 13",
+      "price": 4500,
+      "description": "Lekki i wydajny ultrabook z ekranem dotykowym",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Dell"
+    },
+    {
+      "id": "8",
+      "name": "Laptop Lenovo ThinkPad X1 Carbon",
+      "price": 4900,
+      "description": "Biznesowy laptop z długim czasem pracy na baterii",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Lenovo"
+    },
+    {
+      "id": "9",
+      "name": "Laptop Microsoft Surface Pro 7",
+      "price": 4200,
+      "description": "Wszechstronny laptop 2-w-1 z odłączanym ekranem",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Microsoft"
+    },
+    {
+      "id": "10",
+      "name": "Smartfon OnePlus 9",
+      "price": 3400,
+      "description": "Smartfon z szybkim ładowaniem i ekranem 120 Hz",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "OnePlus"
+    },
+    {
+      "id": "11",
+      "name": "Laptop ASUS ZenBook 14",
+      "price": 3700,
+      "description": "Stylowy i kompaktowy laptop z długą żywotnością baterii",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "ASUS"
+    },
+    {
+      "id": "12",
+      "name": "Laptop Huawei MateBook X Pro",
+      "price": 4300,
+      "description": "Wydajny laptop z ekranem FullView i dużą pamięcią",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Huawei"
+    },
+    {
+      "id": "13",
+      "name": "Laptop Apple MacBook Air M1",
+      "price": 4900,
+      "description": "Ultralekki laptop z procesorem Apple M1 i długą baterią",
       "imageUrl": "./img/laptop-small.jpg",
       "brand": "Apple"
     },
     {
-      "id": "3",
-      "name": "Laptop Predator",
-      "price": 3000,
-      "description": "Potężny laptop do gier",
+      "id": "14",
+      "name": "Smartfon Xiaomi Mi 11",
+      "price": 3300,
+      "description": "Smartfon z doskonałym stosunkiem jakości do ceny",
       "imageUrl": "./img/laptop-small.jpg",
-      "brand": "Acer"
-    },
-    {
-      "id": "4",
-      "name": "Laptop Pavilion",
-      "price": 2800,
-      "description": "Laptop do codziennego użytku",
-      "imageUrl": "./img/laptop-small.jpg",
-      "brand": "HP"
-    },
-    {
-      "id": "471a",
-      "brand": "ASUS",
-      "name": "Laptopt ASUS",
-      "price": 3400,
-      "description": "Laptop gamingowy",
-      "imageUrl": "./img/laptop-small.jpg"
+      "brand": "Xiaomi"
     }
   ]
 }
