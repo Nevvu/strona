@@ -1,30 +1,22 @@
 <!DOCTYPE html>
 <html lang="pl">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>X-KOM</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/style.css">
     <script src="https://kit.fontawesome.com/afa8040683.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
     <nav>
         <div class="wrapper">
             <button class="burger-icon" onclick="toggleMenu()"><i class="fa-solid fa-bars"></i></button>
-
             <div class="nav-items">
                 <a href="#">strona główna</a>
-                <a href="promocje.html">promocje</a>
-                <a href="koszyk.html">koszyk</a>
+                <a href="#" onclick="toggleCart()"><i class="fa-solid fa-cart-shopping"></i> koszyk</a>
             </div>
         </div>
     </nav>
-
     <header class="header">
         <div class="hero-bg"></div>
         <div class="hero-text">
@@ -36,10 +28,10 @@
             <div class="grid-container">
                 <button class="filter-toggle" onclick="toggleFilters()">Filtry</button>
                 <section class="filter-section">
-                    <h3>Filtry</h3>
+                    <h2>Filtry</h2>
                     <button onclick="clearFilters()">Wyczyść wszystkie</button>
                     <div class="filter-group">
-                        <h4>Producent</h4>
+                        <h3>Producent</h3>
                         <label><input type="checkbox" name="brand" value="ASUS"> ASUS </label>
                         <label><input type="checkbox" name="brand" value="Apple"> Apple </label>
                         <label><input type="checkbox" name="brand" value="Acer"> Acer </label>
@@ -47,7 +39,6 @@
                         <label><input type="checkbox" name="brand" value="Lenovo"> Lenovo </label>
                         <label><input type="checkbox" name="brand" value="Toshiba"> Toshiba </label>
                     </div>
-        
                     <form id="add-product-form" enctype="multipart/form-data">
                         <h3>Dodawanie produktów</h3>
                         <select name="productBrand" required>
@@ -70,23 +61,29 @@
                         <h3>Edycja produktu</h3>
                         <input type="hidden" name="productId">
                         <input type="number" name="saleDuration" placeholder="Czas trwania promocji (minuty)" min="0">
+                        <input type="number" name="productDiscount" placeholder="Procent zniżki" min="0" max="100">
                         <button type="submit">Zapisz zmiany</button>
                     </form>
-                </section>
 
+                </section>
                 <section class="product-section">
                     <div class="products-container">
                         <!-- Produkty będą dodawane tutaj -->
                     </div>
                 </section>
-
+                <section id="cart" class="cart-section">
+                    <h3>Twój Koszyk</h3>
+                    <div class="cart-items">
+                        <!-- Produkty w koszyku będą tutaj -->
+                    </div>
+                    <button onclick="clearCart()">Wyczyść koszyk</button>
+                </section>
             </div>
         </div>
         <section class="contact">
             <h2 class="contact-section">kontakt</h2>
             <p><i class="fa-solid fa-phone"></i>+48 123 456 789</p>
             <p><i class="fa-solid fa-envelope"></i>nazwa_firmy@mail.mail</p>
-            
             <h3>Adres</h3>
             <p>ul. Witosa 1</p>
             <p>00-000 Bielystok</p>
@@ -96,6 +93,6 @@
         <p>&copy; 2024 NAZWA FIRMY</p>
     </footer>
     <script src="./js/script.js"></script>
-</body>
 
+</body>
 </html>
