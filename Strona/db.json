@@ -8,21 +8,9 @@
       "imageUrl": "./img/laptop-small.jpg",
       "brand": "Samsung",
       "isOnPromotion": true,
-      "originalPrice": 3055,
+      "originalPrice": 2444,
       "discount": 20,
       "saleEndTime": "2024-06-17T10:12:31.089Z"
-    },
-    {
-      "id": "6",
-      "name": "Smartfon Google Pixel 6",
-      "price": 3500,
-      "description": "Smartfon z czystym Androidem i wyjątkową kamerą",
-      "imageUrl": "./img/laptop-small.jpg",
-      "brand": "Google",
-      "isOnPromotion": true,
-      "originalPrice": 3500,
-      "discount": 15,
-      "saleEndTime": "2024-07-01T00:00:00Z"
     },
     {
       "id": "7",
@@ -44,7 +32,7 @@
       "imageUrl": "./img/laptop-small.jpg",
       "brand": "Lenovo",
       "isOnPromotion": true,
-      "saleEndTime": "2024-06-17T09:16:30.283Z",
+      "saleEndTime": "2024-06-17T14:37:24.386Z",
       "discount": 5,
       "originalPrice": 4900
     },
@@ -60,7 +48,7 @@
     {
       "id": "10",
       "name": "Smartfon OnePlus 9",
-      "price": "3060.00",
+      "price": "3400.00",
       "description": "Smartfon z szybkim ładowaniem i ekranem 120 Hz",
       "imageUrl": "./img/laptop-small.jpg",
       "brand": "OnePlus",
@@ -110,6 +98,14 @@
       "imageUrl": "./img/laptop-small.jpg",
       "brand": "Xiaomi",
       "isOnPromotion": false
+    },
+    {
+      "id": "503a",
+      "brand": "ASUS",
+      "name": "Laptopt ASUS",
+      "price": 2345,
+      "description": "MAKgggggggggggggg",
+      "imageUrl": "blob:http://127.0.0.1:5500/48942881-a612-4cbd-9049-420c751c0527"
     }
   ]
 }
