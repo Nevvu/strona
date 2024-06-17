@@ -1,40 +1,115 @@
 {
   "products": [
     {
-      "id": "3e18",
-      "brand": "ASUS",
-      "name": "Laptopt ASUS",
-      "price": 3400,
-      "description": "Matatata",
+      "id": "5",
+      "name": "Smartfon Samsung Galaxy S21",
+      "price": "2444.00",
+      "description": "Zaawansowany smartfon z ekranem AMOLED",
       "imageUrl": "./img/laptop-small.jpg",
-      "saleEndTime": "2024-06-16T23:35:05.205Z",
-      "discount": 5
+      "brand": "Samsung",
+      "isOnPromotion": true,
+      "originalPrice": 3055,
+      "discount": 20,
+      "saleEndTime": "2024-06-17T10:12:31.089Z"
     },
     {
-      "id": "3e21",
-      "brand": "ASUS",
-      "name": "Laptopt ASUS",
-      "price": 3400,
-      "description": "Matatata",
+      "id": "6",
+      "name": "Smartfon Google Pixel 6",
+      "price": 3500,
+      "description": "Smartfon z czystym Androidem i wyjątkową kamerą",
       "imageUrl": "./img/laptop-small.jpg",
-      "saleEndTime": "2024-06-16T23:01:51.031Z"
+      "brand": "Google",
+      "isOnPromotion": true,
+      "originalPrice": 3500,
+      "discount": 15,
+      "saleEndTime": "2024-07-01T00:00:00Z"
     },
     {
-      "id": "3e20",
-      "brand": "ASUS",
-      "name": "Laptopt ASUS",
-      "price": 3400,
-      "description": "Matatata",
-      "imageUrl": "./img/laptop-small.jpg"
+      "id": "7",
+      "name": "Laptop Dell XPS 13",
+      "price": 4500,
+      "description": "Lekki i wydajny ultrabook z ekranem dotykowym",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Dell",
+      "isOnPromotion": true,
+      "originalPrice": 4500,
+      "discount": 13,
+      "saleEndTime": "2024-07-01T00:00:00Z"
     },
     {
-      "id": "3e19",
-      "brand": "ASUS",
-      "name": "Laptopt ASUS",
-      "price": 3400,
-      "description": "Matatata",
+      "id": "8",
+      "name": "Laptop Lenovo ThinkPad X1 Carbon",
+      "price": "4655.00",
+      "description": "Biznesowy laptop z długim czasem pracy na baterii",
       "imageUrl": "./img/laptop-small.jpg",
-      "saleEndTime": "2024-06-16T22:52:07.594Z"
+      "brand": "Lenovo",
+      "isOnPromotion": true,
+      "saleEndTime": "2024-06-17T09:16:30.283Z",
+      "discount": 5,
+      "originalPrice": 4900
+    },
+    {
+      "id": "9",
+      "name": "Laptop Microsoft Surface Pro 7",
+      "price": 4200,
+      "description": "Wszechstronny laptop 2-w-1 z odłączanym ekranem",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Microsoft",
+      "isOnPromotion": false
+    },
+    {
+      "id": "10",
+      "name": "Smartfon OnePlus 9",
+      "price": "3060.00",
+      "description": "Smartfon z szybkim ładowaniem i ekranem 120 Hz",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "OnePlus",
+      "isOnPromotion": true,
+      "saleEndTime": "2024-06-17T09:17:20.969Z",
+      "discount": 10,
+      "originalPrice": 3400
+    },
+    {
+      "id": "11",
+      "name": "Laptop ASUS ZenBook 14",
+      "price": 3700,
+      "description": "Stylowy i kompaktowy laptop z długą żywotnością baterii",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "ASUS",
+      "isOnPromotion": true,
+      "originalPrice": 3700,
+      "discount": 16,
+      "saleEndTime": "2024-07-01T00:00:00Z"
+    },
+    {
+      "id": "12",
+      "name": "Laptop Huawei MateBook X Pro",
+      "price": 4300,
+      "description": "Wydajny laptop z ekranem FullView i dużą pamięcią",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Huawei",
+      "isOnPromotion": false
+    },
+    {
+      "id": "13",
+      "name": "Laptop Apple MacBook Air M1",
+      "price": 4900,
+      "description": "Ultralekki laptop z procesorem Apple M1 i długą baterią",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Apple",
+      "isOnPromotion": true,
+      "originalPrice": 4900,
+      "discount": 18,
+      "saleEndTime": "2024-07-01T00:00:00Z"
+    },
+    {
+      "id": "14",
+      "name": "Smartfon Xiaomi Mi 11",
+      "price": 3300,
+      "description": "Smartfon z doskonałym stosunkiem jakości do ceny",
+      "imageUrl": "./img/laptop-small.jpg",
+      "brand": "Xiaomi",
+      "isOnPromotion": false
     }
   ]
 }
