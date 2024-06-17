@@ -1,3 +1,5 @@
+//setPromotion();
+
 document.addEventListener('DOMContentLoaded', function () {
     const burgerIcon = document.querySelector('.burger-icon');
     const navItems = document.querySelector('.nav-items');
@@ -11,8 +13,11 @@ document.addEventListener('DOMContentLoaded', function () {
     bindFormSubmit();
     bindFilterEvents();
     handleResize();
-
+    //setPromotion();
+    //setInterval(setPromotion, 3000);
 });
+
+
 
 function fetchProducts() {
     const productsContainer = document.querySelector('.products-container');
@@ -35,7 +40,7 @@ function fetchProducts() {
                 productDiv.innerHTML = `
                     <img src="${product.imageUrl || 'placeholder.png'}" alt="Obrazek produktu" onerror="this.onerror=null; this.src='placeholder.png';">
                     <h3>${product.name}</h3>
-                    <p>Cena: ${product.price} zł</p>
+                    <p>Cena: <span class="${product.isOnPromotion ? 'promotion-price' : ''}">${product.price.toFixed(2)} zł</span></p>
                     <p>${product.description}</p>
                     <button class="add-to-cart" data-id="${product.id}">Dodaj do koszyka</button>
                     <button class="delete-product" data-id="${product.id}">Usuń</button>
@@ -224,6 +229,58 @@ function handleResize() {
 function toggleFilters() {
     const filterSection = document.querySelector('.filter-section');
     filterSection.classList.toggle('active');
+}
+
+// Funkcja do losowego wybierania produktów
+function getRandomProducts(products, count) {
+    const shuffled = products.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
+// Funkcja do ustawiania promocji na losowe produkty
+let isPromotionRunning = false;
+function setPromotion() {
+    if (isPromotionRunning) return; // Jeśli promocja już się uruchamia, zakończ funkcję
+
+    isPromotionRunning = true; // Ustaw flagę na czas trwania promocji
+
+    fetch('http://localhost:3000/products')
+        .then(response => response.json())
+        .then(products => {
+            // Usuwanie istniejących promocji
+            products.forEach(product => {
+                if (product.isOnPromotion) {
+                    product.price = product.originalPrice;
+                    delete product.isOnPromotion;
+                    delete product.originalPrice;
+                    fetch(`http://localhost:3000/products/${product.id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(product)
+                    });
+                }
+            });
+
+            // Losowe produkty na promocję
+            const productsOnPromotion = getRandomProducts(products, 5);
+            productsOnPromotion.forEach(product => {
+                product.isOnPromotion = true;
+                product.originalPrice = product.price;
+                product.price = product.price * (0.8 + Math.random() * 0.1); // Obniżenie ceny o 10-20%
+
+                fetch(`http://localhost:3000/products/${product.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(product)
+                });
+            });
+
+            // Odświeżenie wyświetlanych produktów
+            fetchProducts();
+        })
+        .finally(() => {
+            isPromotionRunning = false; // Zwolnij blokadę po zakończeniu
+        });
 }
 
 window.addEventListener('resize', handleResize);

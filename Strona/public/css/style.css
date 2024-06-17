@@ -55,6 +55,12 @@ nav {
     background: none;
     cursor: pointer;
     z-index: 2;
+    color: #fff;
+    transition: rotate .3s;
+}
+
+.burger-icon:hover{
+    rotate: 90deg;
 }
 
 .nav-items {
@@ -358,6 +364,11 @@ main {
 .contact-section ~ h3 {
     margin: 20px 0 5px;
     text-transform: uppercase;
+}
+
+.promotion-price {
+    color: red;
+    font-weight: bold;
 }
 
 footer {
